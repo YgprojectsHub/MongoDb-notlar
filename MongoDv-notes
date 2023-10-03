@@ -1,0 +1,53 @@
+studentModel.insertOne({name:"yusuf",password:"329740327f8u3280ry",interests:["Software","Music"]}) //Sadece 1 veri eklememizi sağlar
+
+studentModel.insertMany({name:"yusuf",password:"329740327f8u3280ry",interests:["Software","Music"]},{name:"Yusufgng",password:"23864278t73ugı",interests:["Software","Dance"]}) //Birden fazla veri eklememizi sağlar
+
+studentModel.find() //Bütün elemanları getirir
+
+studentModel.find({department:"Software"}) //Department değeri software olan elemanı getirir
+
+studentModel.find({puan:59,department:"Software"}) //Department değeri software ve puan değeri 59 olan elaemanları getirir
+
+studentModel.find({department:"Software"}).count() //Department değeri software olan elemanların sayısını getirir
+
+studentModel.findOne({_id:ObjectId("afas5y7ık7oo90ğp9897")}) //afas5y7ık7oo90ğp9897 id'sine eşit olan elemanın tüm değerlerini getirir
+
+studentModel.find().limit(3) //İlk 3 elmanı sıralar
+
+studentModel.find().sort({department:1}) //Department değeri olan elemanları küçükten büyüğe doğru sıralar
+
+studentModel.find().sort({department:-1}) //Department değeri olan elemanları büyükten küçüğe doğru sıralar
+
+studentModel.find({puan:{$gt:4}}) //Puanı 4 ten büyük olan elemanı/elemanları getirir ($gt=Gretter Than yani "ten büyük olan" demek)
+
+studentModel.find({puan:{$lt:4}}) //Puanı 4 ten küçük  olan elemanı/elemanları getirir ($lt=Letter Than yani "ten küçük olan" demek)
+
+studentModel.find({puan:{$lt:4},department:"Software"}) //Puanı 4 ten büyük ve departmentı software olan elemanı/elemanları getirir
+
+studentModel.find({$or:[{puan:4},{puan:{$lt:7}}]}) //Puanı 4 olanı ya da puanı en az 7 olanı getir.r
+
+studentModel.find({$and:[{puan:4},{department:"Software"}]}) //Puanı 4 olanı ve departmentı software olanı getirir
+
+studentModel.find({puan:{$in:[4,5]}}) //Puanı 4 ve 5 olanı getirir
+
+studentModel.find({puan:{$nin:[4,5]}}) //Puanı 4 ve 5 olmayanı getirir
+
+studentModel.find({interest:{$all:["Software","Music"]}}) //Software ve Music interest içeren dizileri getirir
+
+studentModel.find({interest:["Software","Music"]}) //Sadece Software ve Music interest içeren dizileri getirir
+
+studentModel.find({"knowslanguage.language":"English"}) //knowslanguage içerisindeki language değeri english olan diziyi getirir
+
+studentModel.deleteOne({_id:ObjectId('afas5y7ık7oo90ğp9897')}) //Id'si afas5y7ık7oo90ğp9897 olanı siler.
+
+studentModel.deleteMany({interest:"Software"}) // interest'ı Software olanı/olanları siler.
+
+studentModel.updateOne({_id:ObjectId("afas5y7ık7oo90ğp9897")},{$set:{name:"Yusufgng",puan:37}}) //Id'si afas5y7ık7oo90ğp9897 olanın name değerini Yusufgng ve puan değerini 37 olarak günceller
+
+studentModel.updateMany({puan:37},{$set:{puan:100}}) //Puanı 37 olan elemanların puanını 100 olarak günceller
+
+studentModel.updateOne({_id:ObjectId("afas5y7ık7oo90ğp9897")},{$push:{university:"İTÜ"}}) //Id'si afas5y7ık7oo90ğp9897 olan elemana university parametresi ekler ve değerini İTÜ olarak ayarlar
+
+studentModel.updateOne({_id:ObjectId("afas5y7ık7oo90ğp9897")},{$pull:{university:"İTÜ"}}) //Id'si afas5y7ık7oo90ğp9897 olan elemanın university parametresini siler
+
+studentModel.updateOne({_id:ObjectId("afas5y7ık7oo90ğp9897")},{$inc:{puan:5}}) //Id'si afas5y7ık7oo90ğp9897 olan elemanın puanını 5 arttırır.
